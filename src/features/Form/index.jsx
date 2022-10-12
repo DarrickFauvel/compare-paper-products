@@ -36,32 +36,6 @@ const Form = () => {
     }))
   }
 
-  const calculateTotalCost = (price, tax) => {
-    if (!tax) tax = 0
-    price = parseFloat(price)
-    tax = parseFloat(tax)
-    const totalCost = price * (tax / 100) + price
-    return totalCost
-  }
-
-  const calculateCostPerSqFt = (totalCost, totalSqFt) => {
-    if (!totalCost || !totalSqFt) return 0
-    totalCost = parseFloat(totalCost)
-    totalSqFt = parseFloat(totalSqFt)
-    const costPerSqFt = totalCost / totalSqFt
-    return costPerSqFt
-  }
-
-  const calculateCostPerRoll = (numOfRolls, totalCost) => {
-    if (!numOfRolls) return 0
-    numOfRolls = parseInt(numOfRolls)
-    totalCost = parseFloat(totalCost)
-    const costPerRoll = totalCost / numOfRolls
-    return costPerRoll
-  }
-
-  const isGreater = () => {}
-
   useEffect(() => {
     if (formValue.price_A) {
       const totalCost = calculateTotalCost(formValue.price_A, formValue.tax_A)
