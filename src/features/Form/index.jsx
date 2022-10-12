@@ -37,49 +37,45 @@ const Form = () => {
   }
 
   useEffect(() => {
-    if (formValue.price_A) {
-      const totalCost = calculateTotalCost(formValue.price_A, formValue.tax_A)
-      setFormValue((prevState) => ({
-        ...prevState,
-        totalCost_A: totalCost
-      }))
-    }
+    const totalCost = calcTotalCost(formValue.price_A, formValue.tax_A)
+    setFormValue((prevState) => ({
+      ...prevState,
+      totalCost_A: totalCost
+    }))
   }, [formValue.price_A, formValue.tax_A])
 
   useEffect(() => {
-    if (formValue.price_B) {
-      const totalCost = calculateTotalCost(formValue.price_B, formValue.tax_B)
-      setFormValue((prevState) => ({
-        ...prevState,
-        totalCost_B: totalCost
-      }))
-    }
+    const totalCost = calcTotalCost(formValue.price_B, formValue.tax_B)
+    setFormValue((prevState) => ({
+      ...prevState,
+      totalCost_B: totalCost
+    }))
   }, [formValue.price_B, formValue.tax_B])
 
   useEffect(() => {
-    const costPerSqFt = calculateCostPerSqFt(
-      formValue.totalCost_A,
-      formValue.totalSqFt_A
+    const costPerSqFt = calcCostPerSqFt(
+      formValue.totalSqFt_A,
+      formValue.totalCost_A
     )
     setFormValue((prevState) => ({
       ...prevState,
       costPerSqFt_A: costPerSqFt
     }))
-  }, [formValue.totalCost_A])
+  }, [formValue.totalSqFt_A, formValue.totalCost_A])
 
   useEffect(() => {
-    const costPerSqFt = calculateCostPerSqFt(
-      formValue.totalCost_B,
-      formValue.totalSqFt_B
+    const costPerSqFt = calcCostPerSqFt(
+      formValue.totalSqFt_B,
+      formValue.totalCost_B
     )
     setFormValue((prevState) => ({
       ...prevState,
       costPerSqFt_B: costPerSqFt
     }))
-  }, [formValue.totalCost_B])
+  }, [formValue.totalSqFt_B, formValue.totalCost_B])
 
   useEffect(() => {
-    const costPerRoll = calculateCostPerRoll(
+    const costPerRoll = calcCostPerRoll(
       formValue.numOfRolls_A,
       formValue.totalCost_A
     )
@@ -87,10 +83,10 @@ const Form = () => {
       ...prevState,
       costPerRoll_A: costPerRoll
     }))
-  }, [formValue.totalCost_A])
+  }, [formValue.numOfRolls_A, formValue.totalCost_A])
 
   useEffect(() => {
-    const costPerRoll = calculateCostPerRoll(
+    const costPerRoll = calcCostPerRoll(
       formValue.numOfRolls_B,
       formValue.totalCost_B
     )
@@ -98,7 +94,7 @@ const Form = () => {
       ...prevState,
       costPerRoll_B: costPerRoll
     }))
-  }, [formValue.totalCost_B])
+  }, [formValue.numOfRolls_B, formValue.totalCost_B])
 
   return (
     <Box component='form' sx={{ mt: 2 }}>
