@@ -1,13 +1,8 @@
 import { useState, useEffect } from 'react'
-import {
-  Box,
-  Button,
-  Container,
-  Stack,
-  TextField,
-  Typography
-} from '@mui/material'
-import { Divider } from '@mui/material'
+
+import calcTotalCost from '../../utils/calcTotalCost'
+import calcCostPerSqFt from '../../utils/calcCostPerSqFt'
+import calcCostPerRoll from '../../utils/calcCostPerRoll'
 
 const Form = () => {
   const [formValue, setFormValue] = useState({
